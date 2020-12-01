@@ -31,7 +31,7 @@ HoldFst <- function(file, P, Q, bin = 5e+05, plot = TRUE) {
     lapply(list.of.packages, require, character.only = T)
 
 
-    if(is.character(file)) vcf <- read.vcfR(file)
+    if(is.character(file)) vcf <- read.vcfR(file, verbose=F)
     else if(is.character(file)==FALSE) vcf<-file
     a <- as.data.frame(vcf@gt)
 
