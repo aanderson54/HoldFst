@@ -11,7 +11,7 @@ if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
 ```
 Then, install HoldFst
 ```
-devtools::install_github("aanderson54/HoldFst")
+devtools::install_github("aanderson54/HoldFst/HoldFst")
 ```
 Lastly, load HoldFst
 ```
@@ -25,6 +25,10 @@ library(HoldFst)
 HoldFst uses a single VCF as the input file. VCFs can be downloaded from publicly available data or generated from new data. The VCF should have standard VCF columns as shown below. The columns named *population1* and *population2* should be replaced with the names of the two populations that you wish to compare as they appear in the vcf. 
 ```
 CHROM POS ID  REF ALT QUAL  FILTER  INFO  FORMAT  *Population1* *Population2*
+```
+The package comes with a small vcf sample that contains variant calls from Chromsome1 from a population of striped and spotted Akagera zebras. To load the sample data,
+```
+data(Chromosome1)
 ```
 To run HoldFst,
 ```
