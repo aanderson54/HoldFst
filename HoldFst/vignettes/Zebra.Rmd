@@ -1,0 +1,64 @@
+---
+title: "Zebra"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Zebra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+* The dataset contains a vcf with two zebra types. The Akagera zebra population contains normal individuals with stripes and non-normal individuals with spotting. The sequencing of all of the individuals was done at a coverage of 2x. There are 15 individuals per group, resulting in a pooled coverage of 30x. This is a consistent coverage for normal high-coverage sequencing and increases the power to detect genotype differences between the two groups. 
+
+* Here the two groups are named "Akagera" for the normal population that is striped and "AkageraV" for the variant population with spots. A vcf containing more than 2 groups can be used as long as the two groups you want to compare are provided in the function argument.
+
+* bin size should not be smaller than 100,000 bases or larger than 10,000,000 bases
+
+First, we will run HoldFst on a small sample of the genome. The data provided in HoldFst is just Chromosome1. The plots produced by running HoldFst are standardized across the chromosome instead of the whole genome so regions that appear significant while just looking at chromosome 1 may not be significant genome wide.
+```{r setup}
+library(HoldFst)
+data("Chromosome1")
+results<-HoldFst(Chromosome1,"Akagera","AkageraV",bin=500000,plot=T)
+```
+
+Now we will run HoldFst on whole genome data to determine significant regions across the genome. The whole genome data is not currently available due to its size, but there are publically available VCFs from already published studies that can be used to run HoldFst. 
+```{r}
+results<-HoldFst("~/Documents/package/Sample.vcf","Akagera","AkageraV",bin=500000,plot=T)
+
+```
+
+# Get top windows for Fst
+* The Fst score tells us about the variance of allele frequencies between the striped and spotted groups. It gives insight into the amount of genetic variance that can be explained by the structure of the population. High fixation indicates that a particular region is more fixed in the spotted population than in the striped and that there is significant differentiation in these regions. 
+```{r}
+topwindows(results,sig='Fst')
+```
+
+# Get top windows for heterozygosity in the P group
+* The heterozygosity in the striped group shows us for the normal population where there are largely conserved regions of the genome.
+```{r}
+topwindows(results,sig='Phet')
+```
+
+# Get top windows for heterozygosity in the Q group
+* The heterozygosity in the spotted group shows us what regions may have less genetic diversity and a genetic drift towards homozygous alt alleles. Significant regions are those that are significantly less heterozygous than the rest of the genome
+```{r}
+topwindows(results,sig='Qhet')
+```
+
+# Get top windows for the difference in heterozygosity (Q-P)
+* Looking at the difference in heterozygosity allows us to compare the heterozygosity between the two groups. A significant diffierence in heterozygosity would mean that either population is significantly more heterozygous than the other in this region. Since the two groups come from the same underlying population, a significant difference in heterozygosity is likely to be associated with whatever phenotypic difference you are investigating. 
+```{r}
+topwindows(results,sig='Diff')
+```
+
+# Get windows that are significant for all of the characteristics 
+* Regions that are most associated with the phenotype are likely to have high fixation, a large difference in heterozygosity, and low heterozygosity in the variant population. The regions below are significant in all of the other categories.
+```{r}
+topwindows(results,sig='all')
+```
