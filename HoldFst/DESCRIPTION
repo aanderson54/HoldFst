@@ -1,0 +1,24 @@
+Package: HoldFst
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Aslyn",
+           family = "Anderson",
+           role = c("aut", "cre"),
+           email = "aanderson3@ufl.edu",
+           comment = c(ID = "aanderson54"))
+Description: Calculate heterozygosity scores and fixation index.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10),
+    ggplot2,
+    gridExtra,
+    vcfR
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
