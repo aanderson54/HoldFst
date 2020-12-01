@@ -203,8 +203,8 @@ HoldFst <- function(file, P, Q, bin = 5e+05, plot = TRUE) {
     if (plot == TRUE) {
 
         ############# Distribution of heterozygosity and Fst #########
-        h1 = hist(data$Phet)
-        h2 = hist(data$Qhet)
+        h1 = hist(data$Phet, xlab="Heterozygosity",main=paste(P))
+        h2 = hist(data$Qhet,xlab="Heterozygosity",main=paste(Q))
         dist <- {
             par(mfrow = c(1, 2))
             hist(data$Phet, xlim = c(min(data$Phet, data$Qhet), max(data$Phet, data$Qhet)),
