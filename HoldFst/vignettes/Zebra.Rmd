@@ -27,11 +27,7 @@ data("Chromosome1")
 results<-HoldFst(Chromosome1,"Akagera","AkageraV",bin=500000,plot=T)
 ```
 
-Now we will run HoldFst on whole genome data to determine significant regions across the genome. The whole genome data is not currently available due to its size, but there are publically available VCFs from already published studies that can be used to run HoldFst. 
-```{r}
-results<-HoldFst("~/Documents/package/Sample.vcf","Akagera","AkageraV",bin=500000,plot=T)
 
-```
 
 # Get top windows for Fst
 * The Fst score tells us about the variance of allele frequencies between the striped and spotted groups. It gives insight into the amount of genetic variance that can be explained by the structure of the population. High fixation indicates that a particular region is more fixed in the spotted population than in the striped and that there is significant differentiation in these regions. 
