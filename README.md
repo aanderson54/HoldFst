@@ -48,6 +48,11 @@ topwindows(results,"all")
 * **results** the object that you save the HoldFst data to
 * The options for **sig** are Fst, Phet, Qhet, Diff, and all
 
+To see how HoldFst is run on the chromosome 1 data browse the vignette with
+```
+browseVignette("HoldFst")
+```
+
 
 
 ## Studies that have used Heterozygosity and Fixation Index
