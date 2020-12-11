@@ -9,7 +9,8 @@ First, install devtools (for installing GitHub packages) if it isn't already ins
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
 ```
-Then, install HoldFst
+Then, install HoldFst. 
+To include the vignette in the package installation add `build_vignettes = T`. (Note: this will increase install time)
 ```
 devtools::install_github("aanderson54/HoldFst/HoldFst")
 ```
